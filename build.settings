@@ -1,0 +1,93 @@
+--
+-- For more information on build.settings, see the Project Build Settings guide at:
+-- https://docs.coronalabs.com/guide/distribution/buildSettings
+--
+
+settings =
+{
+	 splashScreen = 
+    {
+        enable = false
+    },
+	orientation =
+	{
+		-- Supported values for orientation:
+		-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+		default = "landscapeRight",
+		supported = { "landscapeRight", },
+	},
+
+	--
+	-- Android section
+	--
+	android =
+	{
+		usesPermissions =
+		{
+			"android.permission.INTERNET",
+		},
+	},
+
+	--
+	-- iOS section
+	--
+	iphone =
+	{
+		xcassets = "Images.xcassets",
+		plist =
+		{
+			UIStatusBarHidden = true,
+			UILaunchStoryboardName = "LaunchScreen",
+			--UIApplicationExitsOnSuspend = false,
+            FacebookAppID = "1708796299228707",  -- Replace XXXXXXXXXX with your Facebook App ID
+            CFBundleURLTypes =
+            {
+                { CFBundleURLSchemes = { "fb1708796299228707", } }  -- Replace XXXXXXXXXX with your Facebook App ID
+            },
+            -- Whitelist Facebook apps
+            LSApplicationQueriesSchemes =
+            {
+                "fb",  -- Needed for the facebook-v4a.isFacebookAppEnabled() API
+                "fbapi",
+                "fbauth2",
+                "fb-messenger-api",
+                "fbshareextension"
+            },
+		},
+	},
+
+	--
+	-- Plugins section
+	--
+	plugins =
+	{
+	  -- For production, Vungle SDK is obtained from Corona server
+        ["plugin.vungle"] = {
+            publisherId = "com.vungle"
+        },
+        ["plugin.photon"] =
+        {
+            publisherId = "com.exitgames",
+        },
+
+        --["CoronaProvider.gameNetwork.apple"] =
+        --{
+       --     publisherId = "com.coronalabs"
+      --  },
+     --    ["plugin.facebook.v4a"] =
+     --   {
+      --      publisherId = "com.coronalabs"
+      --  },
+
+	},
+
+	--
+	-- Project section
+	--
+	excludeFiles =
+	{
+		-- Exclude unnecessary files for each platform
+		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", },
+		android = { "LaunchScreen.storyboardc", },
+	},
+}
